@@ -34,6 +34,19 @@ test("site exposes PDF export controls and print-only document title", () => {
   assert.match(js, /window\.print\(\)/);
 });
 
+test("print stylesheet preserves portfolio visuals and colors", () => {
+  const css = read("styles.css");
+  const printCss = css.match(/@media print \{[\s\S]*\n\}/)?.[0] ?? "";
+
+  assert.match(printCss, /print-color-adjust:\s*exact/);
+  assert.match(printCss, /-webkit-print-color-adjust:\s*exact/);
+  assert.match(printCss, /\.project-visual[\s\S]*display:\s*grid/);
+  assert.match(printCss, /\.evidence-strip[\s\S]*display:\s*grid/);
+  assert.match(printCss, /\.architecture-panel[\s\S]*display:\s*block/);
+  assert.doesNotMatch(printCss, /\.project-visual,\s*\.evidence-strip,\s*\.architecture-panel\s*\{[\s\S]*display:\s*none/);
+  assert.doesNotMatch(printCss, /body\s*\{[\s\S]*background:\s*#fff/);
+});
+
 test("portfolio page does not include resume narrative content", () => {
   const html = read("index.html");
 

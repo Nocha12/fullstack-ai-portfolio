@@ -575,12 +575,12 @@ figcaption {
 @media print {
   @page {
     size: A4;
-    margin: 12mm;
+    margin: 8mm;
   }
 
   * {
-    box-shadow: none !important;
-    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   html {
@@ -588,9 +588,12 @@ figcaption {
   }
 
   body {
-    background: #fff;
-    color: #111;
-    font-size: 9.6pt;
+    background:
+      linear-gradient(90deg, rgba(11, 130, 216, 0.08) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(0, 191, 255, 0.07) 1px, transparent 1px),
+      var(--paper);
+    color: var(--ink);
+    font-size: 8.4pt;
     line-height: 1.38;
   }
 
@@ -607,8 +610,10 @@ figcaption {
 
   .print-title {
     grid-column: 1 / -1;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #111;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(18, 62, 99, 0.28);
+    color: var(--navy);
   }
 
   .print-title strong,
@@ -625,85 +630,184 @@ figcaption {
   .project-card.featured,
   .project-grid,
   .stack-grid {
-    display: block;
+    display: grid;
   }
 
   .hero {
-    padding: 0 0 8px;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 14px;
+    align-items: end;
+    padding: 2px 0 14px;
+    break-inside: avoid;
   }
 
   h1 {
-    margin-top: 10px;
-    font-size: 25pt;
+    margin-top: 8px;
+    font-size: 30pt;
+  }
+
+  .hero-lede {
+    margin-top: 12px;
+    font-size: 10pt;
   }
 
   .hero-lede,
   .project-card p,
   .focus-card p,
   .stack-grid p {
-    color: #222;
+    color: var(--muted);
   }
 
   .signal-panel,
   .focus-card,
   .project-card,
   .stack-grid > div {
-    border: 1px solid #bbb;
-    background: #fff;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.9);
     break-inside: avoid;
   }
 
   .signal-panel {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 8px;
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    box-shadow: none;
   }
 
   .signal-panel > div {
-    padding: 8px;
-    border-bottom: 0;
-    border-right: 1px solid #ddd;
+    padding: 9px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 
   .section-heading {
-    margin: 16px 0 8px;
+    margin: 18px 0 8px;
   }
 
   .section-heading h2 {
-    font-size: 18pt;
+    font-size: 22pt;
   }
 
   .overview-grid {
-    columns: 3;
-    column-gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .focus-card,
   .compact,
   .stack-grid > div {
-    display: inline-block;
     width: 100%;
-    margin: 0 0 8px;
     padding: 10px;
   }
 
+  .compact {
+    font-size: 7.7pt;
+  }
+
+  .focus-card {
+    min-height: 116px;
+  }
+
+  .focus-card h2,
+  .stack-grid h3 {
+    margin-top: 12px;
+  }
+
+  .project-card.featured {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    box-shadow: none;
+  }
+
   .project-content {
-    padding: 12px;
+    padding: 14px;
   }
 
-  .project-visual,
-  .evidence-strip,
-  .architecture-panel {
-    display: none;
-  }
-
-  .tag-row span {
-    border-color: #999;
-    background: #fff;
-    color: #111;
+  .project-card h3 {
+    font-size: 18pt;
   }
 
   .impact-list {
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .tag-row {
+    margin-top: 12px;
+  }
+
+  .project-visual {
+    display: grid;
+    padding: 12px;
+  }
+
+  .project-visual figure {
+    align-content: center;
+  }
+
+  .evidence-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
     margin-top: 8px;
+    break-inside: avoid;
+  }
+
+  .architecture-panel {
+    display: block;
+    margin-top: 8px;
+    break-inside: avoid;
+  }
+
+  .evidence-strip figure,
+  .architecture-panel {
+    padding: 10px;
+  }
+
+  .media-frame {
+    box-shadow: none;
+  }
+
+  .architecture-shot {
+    min-height: 92px;
+  }
+
+  figcaption {
+    margin-top: 6px;
+    font-size: 7.6pt;
+  }
+
+  .tag-row span {
+    border-color: rgba(11, 130, 216, 0.24);
+    background: #e8f6ff;
+    color: #16486f;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .compact h3 {
+    font-size: 12pt;
+  }
+
+  .stack-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stack-grid > div {
+    padding: 8px;
+  }
+
+  .stack-grid h3 {
+    margin-top: 0;
+    font-size: 11pt;
+  }
+
+  .stack-grid p {
+    margin: 6px 0 0;
+    font-size: 7.2pt;
   }
 }
