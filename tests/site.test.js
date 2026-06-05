@@ -21,6 +21,19 @@ test("site has GitHub Pages static entrypoint with project case studies", () => 
   assert.match(html, /script\.js/);
 });
 
+test("hero includes a professional profile photo", () => {
+  const html = read("index.html");
+  const css = read("styles.css");
+  const profilePath = path.join(root, "assets", "profile-junseok.jpeg");
+
+  assert.ok(fs.existsSync(profilePath));
+  assert.match(html, /class="hero-aside"/);
+  assert.match(html, /src="assets\/profile-junseok\.jpeg"/);
+  assert.match(html, /alt="양준석 프로필 사진"/);
+  assert.match(css, /\.profile-card/);
+  assert.match(css, /\.profile-photo img[\s\S]*object-fit:\s*cover/);
+});
+
 test("site exposes PDF export controls and print-only document title", () => {
   const html = read("index.html");
   const css = read("styles.css");
