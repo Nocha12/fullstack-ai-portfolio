@@ -1,4 +1,4 @@
-# Full-Stack AI Portfolio
+# 양준석 풀스택 AI 포트폴리오
 
 GitHub Pages에 바로 배포 가능한 정적 포트폴리오입니다. 빌드 도구가 필요 없고, `index.html`을 루트에 둔 상태로 Pages를 켜면 사이트가 열립니다.
 

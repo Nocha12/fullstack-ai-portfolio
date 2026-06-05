@@ -12,10 +12,10 @@ function read(file) {
 test("site has GitHub Pages static entrypoint with project case studies", () => {
   const html = read("index.html");
 
-  assert.match(html, /<title>Full-Stack AI Portfolio/);
+  assert.match(html, /<title>양준석 풀스택 AI 포트폴리오/);
   assert.match(html, /육군 공보 sLM 분석 플랫폼/);
   assert.match(html, /지니티쳐/);
-  assert.match(html, /AI Essay Assist/);
+  assert.match(html, /AI 서논술 첨삭/);
   assert.match(html, /CALPASAIDL/);
   assert.match(html, /styles\.css/);
   assert.match(html, /script\.js/);
